@@ -2,6 +2,7 @@ package bolide.mg.back.component;
 
 import bolide.mg.back.service.CustomUserDetailsService;
 import bolide.mg.back.model.User;
+import bolide.mg.back.service.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,4 +1,4 @@
-package bolide.mg.back.component;
+package bolide.mg.back.service;
 
 import bolide.mg.back.model.User;
 import io.jsonwebtoken.Claims;
