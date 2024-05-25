@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BolideBackApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BolideBackApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(BolideBackApplication.class, args);
+  }
 }

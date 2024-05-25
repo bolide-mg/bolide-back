@@ -1,13 +1,14 @@
 CREATE TABLE car(
-    id SERIAL PRIMARY KEY ,
-    name VARCHAR(20),
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
     description TEXT,
-    brand VARCHAR(20),
+    brand VARCHAR(50),
+    model VARCHAR(50),
     price FLOAT,
-    color VARCHAR(20),
-    motor_type VARCHAR(20),
+    color VARCHAR(70),
+    motor_type VARCHAR(100),
     power FLOAT,
     place_number INT,
-    status VARCHAR(20) CHECK ( status IN ('available', 'waiting', 'sold') ),
-    type VARCHAR(20)
+    status INT DEFAULT 0, --Default 0 means the car is not pinned (not highlighted on landing page, limited to 6 cars)
+    type VARCHAR(70)
 );
