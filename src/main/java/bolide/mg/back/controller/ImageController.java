@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 @RequestMapping("/Image")
 public class ImageController {
   private final ImageService imageService;
@@ -23,7 +24,7 @@ public class ImageController {
     return ResponseEntity.ok(imageService.findImagesByCarId(carId));
   }
 
-  //TODO
+  // TODO
   @PostMapping("/car")
   public ResponseEntity<Image> assignImageToCar(@RequestBody Image image) {
     throw new RuntimeException("Not Implemented");

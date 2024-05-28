@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminService {
   private final AdminRepository adminRepository;
+  private final PasswordService passwordService;
 
-  public AdminService(AdminRepository adminRepository) {
+  public AdminService(AdminRepository adminRepository, PasswordService passwordService) {
     this.adminRepository = adminRepository;
+    this.passwordService = passwordService;
   }
 
   public List<Admin> findAllAdmin() {
@@ -22,6 +24,7 @@ public class AdminService {
   }
 
   public Admin saveAdmin(Admin admin) {
+    admin.setPassword(passwordService.encode(admin.getPassword()));
     return adminRepository.save(admin);
   }
 

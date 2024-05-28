@@ -20,11 +20,10 @@ public class Admin {
   @Column(name = "email", length = 50)
   private String email;
 
-  @Size(max = 50)
-  @Column(name = "password", length = 50)
+  @Column(name = "password", length = Integer.MAX_VALUE)
   private String password;
 
-  @Size(max = 20)
-  @Column(name = "name", length = 20)
+  @Size(max = 50)
+  @Column(name = "name", length = 50)
   private String name;
 }
