@@ -24,10 +24,12 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
+@CrossOrigin
 public class SecurityConfig {
 
   private final RsaKeyProperties rsaKeyProperties;
