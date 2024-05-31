@@ -23,6 +23,10 @@ public class AdminService {
     return adminRepository.findById(id).orElse(null);
   }
 
+  public Admin findAdminByEmail(String email) {
+    return adminRepository.findByEmail(email);
+  }
+
   public Admin saveAdmin(Admin admin) {
     admin.setPassword(passwordService.encode(admin.getPassword()));
     return adminRepository.save(admin);

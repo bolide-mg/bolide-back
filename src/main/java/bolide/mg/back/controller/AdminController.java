@@ -1,15 +1,19 @@
 package bolide.mg.back.controller;
 
 import bolide.mg.back.model.Admin;
+import bolide.mg.back.model.AdminDto;
 import bolide.mg.back.service.AdminService;
 import bolide.mg.back.service.TokenService;
 import java.util.List;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,11 +40,20 @@ public class AdminController {
   }
 
   @PutMapping("/signin")
-  public ResponseEntity<String> signin(@RequestBody Admin admin) {
+  public ResponseEntity<Map<String, Object>> signin(@RequestBody Admin admin) {
+    Admin existingAdmin = adminService.findAdminByEmail(admin.getEmail());
+    if (existingAdmin == null) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin doesn't exist");
+    }
     Authentication authentication =
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(admin.getEmail(), admin.getPassword()));
-    return ResponseEntity.ok(tokenService.generateToken(authentication));
+    String token = tokenService.generateToken(authentication);
+
+    AdminDto adminDto =
+        new AdminDto(existingAdmin.getId(), existingAdmin.getEmail(), existingAdmin.getName());
+
+    return ResponseEntity.ok(Map.of("token", token, "admin", adminDto));
   }
 
   @PutMapping("/delete")
