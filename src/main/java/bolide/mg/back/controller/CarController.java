@@ -24,6 +24,17 @@ public class CarController {
     return ResponseEntity.ok(carService.findCarById(id));
   }
 
+  @GetMapping("/trending")
+  public ResponseEntity<List<Car>> findTrendingCar() {
+      return ResponseEntity.ok(carService.findTrendingCars(1));
+  }
+
+  @GetMapping("/search")
+  public ResponseEntity<List<Car>> findCarsByParameters(@RequestParam String name, @RequestParam String brand,
+                                                       @RequestParam String model, @RequestParam String motorType) {
+      return ResponseEntity.ok(carService.findCarsByParameters(name, brand, model, motorType));
+  }
+
   @PutMapping
   public ResponseEntity<Car> saveCar(@RequestBody Car car) {
     return ResponseEntity.ok(carService.saveCar(car));

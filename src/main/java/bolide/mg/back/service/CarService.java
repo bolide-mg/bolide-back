@@ -21,6 +21,14 @@ public class CarService {
     return carRepository.findById(id).orElse(null);
   }
 
+  public List<Car> findCarsByParameters(String name, String brand, String model, String motorType) {
+    return carRepository.findCarsByNameOrBrandOrModelOrMotorType(name, brand, model, motorType);
+  }
+
+  public List<Car> findTrendingCars(Integer status) {
+      return carRepository.findCarsByStatus(status);
+  }
+
   public Car saveCar(Car Car) {
     return carRepository.save(Car);
   }
