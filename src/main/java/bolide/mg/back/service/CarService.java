@@ -26,7 +26,7 @@ public class CarService {
   }
 
   public List<Car> findTrendingCars(Integer status) {
-      return carRepository.findCarsByStatus(status);
+    return carRepository.findCarsByStatus(status);
   }
 
   public Car saveCar(Car Car) {

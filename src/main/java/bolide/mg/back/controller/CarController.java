@@ -26,13 +26,16 @@ public class CarController {
 
   @GetMapping("/trending")
   public ResponseEntity<List<Car>> findTrendingCar() {
-      return ResponseEntity.ok(carService.findTrendingCars(1));
+    return ResponseEntity.ok(carService.findTrendingCars(1));
   }
 
   @GetMapping("/search")
-  public ResponseEntity<List<Car>> findCarsByParameters(@RequestParam String name, @RequestParam String brand,
-                                                       @RequestParam String model, @RequestParam String motorType) {
-      return ResponseEntity.ok(carService.findCarsByParameters(name, brand, model, motorType));
+  public ResponseEntity<List<Car>> findCarsByParameters(
+      @RequestParam String name,
+      @RequestParam String brand,
+      @RequestParam String model,
+      @RequestParam String motorType) {
+    return ResponseEntity.ok(carService.findCarsByParameters(name, brand, model, motorType));
   }
 
   @PutMapping

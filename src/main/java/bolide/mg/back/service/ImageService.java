@@ -20,4 +20,10 @@ public class ImageService {
   public List<Image> findImagesByCarId(Integer carId) {
     return imageRepository.findImagesByCarId(carId);
   }
+
+  // TODO
+  public Image saveImage(Image image) {
+    throw new RuntimeException("Not Implemented");
+    // should upload image to supabase
+  }
 }
