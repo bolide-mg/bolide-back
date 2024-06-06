@@ -34,7 +34,7 @@ public class ImageService {
 
   public Image saveImage(MultipartFile file, Integer carId) {
     String fileName = file.getOriginalFilename();
-    List<Image> existingImages = imageRepository.findImagesByFileName(fileName);
+    List<Image> existingImages = imageRepository.findImagesByFileNameIgnoreCase(fileName);
 
     Car car = carRepository.findById(carId).orElse(null);
 

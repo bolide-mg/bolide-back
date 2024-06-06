@@ -22,7 +22,8 @@ public class CarService {
   }
 
   public List<Car> findCarsByParameters(String name, String brand, String model, String motorType) {
-    return carRepository.findCarsByNameOrBrandOrModelOrMotorType(name, brand, model, motorType);
+    return carRepository.findCarsByNameOrBrandOrModelOrMotorTypeIgnoreCase(
+        name, brand, model, motorType);
   }
 
   public List<Car> findTrendingCars(Integer status) {

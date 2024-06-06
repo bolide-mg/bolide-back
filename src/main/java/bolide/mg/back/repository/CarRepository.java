@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer> {
-  List<Car> findCarsByNameOrBrandOrModelOrMotorType(
+  List<Car> findCarsByNameOrBrandOrModelOrMotorTypeIgnoreCase(
       String name, String brand, String model, String motorType);
 
   List<Car> findCarsByStatus(Integer status);
