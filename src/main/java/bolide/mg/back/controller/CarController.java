@@ -1,7 +1,9 @@
 package bolide.mg.back.controller;
 
 import bolide.mg.back.model.Car;
+import bolide.mg.back.model.Image;
 import bolide.mg.back.service.CarService;
+import bolide.mg.back.service.ImageService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/car")
 public class CarController {
   private final CarService carService;
+  private final ImageService imageService;
 
   @GetMapping
   public ResponseEntity<List<Car>> findAllCar() {
@@ -22,6 +25,11 @@ public class CarController {
   @GetMapping("/{id}")
   public ResponseEntity<Car> findCarById(@PathVariable Integer id) {
     return ResponseEntity.ok(carService.findCarById(id));
+  }
+
+  @GetMapping("/{id}/images")
+  public ResponseEntity<List<Image>> findImagesByCarId(@PathVariable Integer id) {
+    return ResponseEntity.ok(imageService.findImagesByCarId(id));
   }
 
   @GetMapping("/trending")

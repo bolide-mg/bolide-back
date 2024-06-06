@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ImageRepository extends JpaRepository<Image, Integer> {
   List<Image> findImagesByCarId(Integer carId);
+
+  List<Image> findImagesByFileName(String fileName);
 }
