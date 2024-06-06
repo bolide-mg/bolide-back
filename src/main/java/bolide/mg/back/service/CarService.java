@@ -22,8 +22,18 @@ public class CarService {
   }
 
   public List<Car> findCarsByParameters(String name, String brand, String model, String motorType) {
-    return carRepository.findCarsByNameOrBrandOrModelOrMotorTypeIgnoreCase(
-        name, brand, model, motorType);
+    if (name == null && brand == null && model == null && motorType == null) {
+      return findAllCar();
+    }
+
+    String nameParam = name != null && !name.isEmpty() ? name : null;
+    String brandParam = brand != null && !brand.isEmpty() ? brand : null;
+    String modelParam = model != null && !model.isEmpty() ? model : null;
+    String motorTypeParam = motorType != null && !motorType.isEmpty() ? motorType : null;
+
+    return carRepository
+        .findByNameContainingIgnoreCaseOrBrandContainingIgnoreCaseOrModelContainingIgnoreCaseOrMotorTypeContainingIgnoreCase(
+            nameParam, brandParam, modelParam, motorTypeParam);
   }
 
   public List<Car> findTrendingCars(Integer status) {

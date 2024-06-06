@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface ImageRepository extends JpaRepository<Image, Integer> {
   List<Image> findImagesByCarId(Integer carId);
 
-  List<Image> findImagesByFileNameIgnoreCase(String fileName);
+  List<Image> findImagesByFileNameContainingIgnoreCase(String fileName);
 }

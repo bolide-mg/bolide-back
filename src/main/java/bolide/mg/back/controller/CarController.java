@@ -39,10 +39,10 @@ public class CarController {
 
   @GetMapping("/search")
   public ResponseEntity<List<Car>> findCarsByParameters(
-      @RequestParam String name,
-      @RequestParam String brand,
-      @RequestParam String model,
-      @RequestParam String motorType) {
+      @RequestParam(required = false) String name,
+      @RequestParam(required = false) String brand,
+      @RequestParam(required = false) String model,
+      @RequestParam(required = false) String motorType) {
     return ResponseEntity.ok(carService.findCarsByParameters(name, brand, model, motorType));
   }
 

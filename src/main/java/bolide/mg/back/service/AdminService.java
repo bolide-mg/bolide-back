@@ -24,7 +24,7 @@ public class AdminService {
   }
 
   public Admin findAdminByEmail(String email) {
-    return adminRepository.findByEmailIgnoreCase(email);
+    return adminRepository.findByEmailContainingIgnoreCase(email);
   }
 
   public Admin saveAdmin(Admin admin) {

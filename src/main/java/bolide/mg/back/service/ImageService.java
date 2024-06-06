@@ -34,11 +34,11 @@ public class ImageService {
 
   public Image saveImage(MultipartFile file, Integer carId) {
     String fileName = file.getOriginalFilename();
-    List<Image> existingImages = imageRepository.findImagesByFileNameIgnoreCase(fileName);
+    List<Image> existingImages = imageRepository.findImagesByFileNameContainingIgnoreCase(fileName);
 
     Car car = carRepository.findById(carId).orElse(null);
 
-    String imageUrl = System.getenv("SUPABASE_URL") + "/storage/v1/object/public/" + fileName;
+    String imageUrl = System.getenv("SUPABASE_URL") + "/storage/v1/object/public/Images/" + fileName;
 
     WebClient webClient =
         WebClient.builder()
