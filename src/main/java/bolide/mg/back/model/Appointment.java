@@ -48,7 +48,7 @@ public class Appointment {
   @Column(name = "status", length = 20)
   private String status;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "id_car")
   private Car idCar;
 }

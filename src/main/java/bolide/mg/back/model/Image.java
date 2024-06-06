@@ -18,7 +18,7 @@ public class Image {
   @Column(name = "file_name", length = Integer.MAX_VALUE)
   private String fileName;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "car_id")
   private Car car;
 

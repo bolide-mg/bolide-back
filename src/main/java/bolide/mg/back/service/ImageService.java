@@ -24,7 +24,7 @@ public class ImageService {
     this.carRepository = carRepository;
   }
 
-  public Image findImagesById(Integer id) {
+  public Image findImageById(Integer id) {
     return imageRepository.findById(id).orElse(null);
   }
 

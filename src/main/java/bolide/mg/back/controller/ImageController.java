@@ -17,7 +17,7 @@ public class ImageController {
 
   @GetMapping("/{id}")
   public ResponseEntity<Image> findImageById(@PathVariable Integer id) {
-    return ResponseEntity.ok(imageService.findImagesById(id));
+    return ResponseEntity.ok(imageService.findImageById(id));
   }
 
   @GetMapping("/car/{carId}")
