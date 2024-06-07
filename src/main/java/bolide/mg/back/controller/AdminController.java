@@ -57,7 +57,7 @@ public class AdminController {
     return ResponseEntity.ok(Map.of("token", token, "admin", adminDto));
   }
 
-  @PutMapping("/delete")
+  @DeleteMapping("/delete")
   public ResponseEntity<Admin> deleteAdmin(@RequestBody Admin admin) {
     return ResponseEntity.ok(adminService.deleteAdmin(admin));
   }

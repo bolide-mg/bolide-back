@@ -51,7 +51,7 @@ public class CarController {
     return ResponseEntity.ok(carService.saveCar(car));
   }
 
-  @PutMapping("/delete")
+  @DeleteMapping("/delete")
   public ResponseEntity<Car> deleteCar(@RequestBody Car car) {
     return ResponseEntity.ok(carService.deleteCar(car));
   }

@@ -29,7 +29,7 @@ public class AppointmentController {
     return ResponseEntity.ok(appointmentService.saveAppointment(Appointment));
   }
 
-  @PutMapping("/delete")
+  @DeleteMapping("/delete")
   public ResponseEntity<Appointment> deleteAppointment(@RequestBody Appointment Appointment) {
     return ResponseEntity.ok(appointmentService.deleteAppointment(Appointment));
   }

@@ -42,7 +42,8 @@ public class ImageService {
 
     Car car = carRepository.findById(carId).orElse(null);
 
-    String imageUrl = System.getenv("SUPABASE_URL") + "/storage/v1/object/public/Images/" + fileName;
+    String imageUrl =
+        System.getenv("SUPABASE_URL") + "/storage/v1/object/public/Images/" + fileName;
 
     WebClient webClient =
         WebClient.builder()
