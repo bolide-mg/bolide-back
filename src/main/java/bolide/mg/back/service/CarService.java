@@ -55,4 +55,8 @@ public class CarService {
   public List<Car> findCarsByPrice(Double minPrice, Double maxPrice) {
     return carRepository.findCarsByPriceBetween(minPrice, maxPrice);
   }
+
+  public List<String> getBrand() {
+    return carRepository.findDistinctBrands();
+  }
 }

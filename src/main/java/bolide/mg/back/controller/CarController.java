@@ -37,6 +37,11 @@ public class CarController {
     return ResponseEntity.ok(carService.findTrendingCars(1));
   }
 
+  @GetMapping("/brand")
+  public ResponseEntity<List<String>> getBrands() {
+    return ResponseEntity.ok(carService.getBrand());
+  }
+
   @GetMapping("/search")
   public ResponseEntity<List<Car>> findCarsByParameters(
       @RequestParam(required = false) String name,
