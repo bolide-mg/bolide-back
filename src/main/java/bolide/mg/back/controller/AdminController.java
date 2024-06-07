@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 @RequestMapping("/admin")
 public class AdminController {
   private final AdminService adminService;
