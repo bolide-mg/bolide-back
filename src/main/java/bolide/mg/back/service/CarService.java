@@ -21,8 +21,9 @@ public class CarService {
     return carRepository.findById(id).orElse(null);
   }
 
-  public List<Car> findCarsByParameters(String name, String brand, String model, String motorType) {
-    if (name == null && brand == null && model == null && motorType == null) {
+  public List<Car> findCarsByParameters(
+      String name, String brand, String model, String motorType, String type) {
+    if (name == null && brand == null && model == null && motorType == null && type == null) {
       return findAllCar();
     }
 
@@ -30,10 +31,11 @@ public class CarService {
     String brandParam = brand != null && !brand.isEmpty() ? brand : null;
     String modelParam = model != null && !model.isEmpty() ? model : null;
     String motorTypeParam = motorType != null && !motorType.isEmpty() ? motorType : null;
+    String typeParam = type != null && !type.isEmpty() ? type : null;
 
     return carRepository
-        .findByNameContainingIgnoreCaseOrBrandContainingIgnoreCaseOrModelContainingIgnoreCaseOrMotorTypeContainingIgnoreCase(
-            nameParam, brandParam, modelParam, motorTypeParam);
+        .findByNameContainingIgnoreCaseOrBrandContainingIgnoreCaseOrModelContainingIgnoreCaseOrMotorTypeContainingIgnoreCaseOrTypeContainingIgnoreCase(
+            nameParam, brandParam, modelParam, motorTypeParam, typeParam);
   }
 
   public List<Car> findTrendingCars(Integer status) {
@@ -48,5 +50,9 @@ public class CarService {
     Car currentCar = findCarById(car.getId());
     carRepository.delete(car);
     return currentCar;
+  }
+
+  public List<Car> findCarsByPrice(Double minPrice, Double maxPrice) {
+    return carRepository.findCarsByPriceBetween(minPrice, maxPrice);
   }
 }

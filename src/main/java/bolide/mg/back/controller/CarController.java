@@ -42,8 +42,15 @@ public class CarController {
       @RequestParam(required = false) String name,
       @RequestParam(required = false) String brand,
       @RequestParam(required = false) String model,
-      @RequestParam(required = false) String motorType) {
-    return ResponseEntity.ok(carService.findCarsByParameters(name, brand, model, motorType));
+      @RequestParam(required = false) String motorType,
+      @RequestParam(required = false) String type) {
+    return ResponseEntity.ok(carService.findCarsByParameters(name, brand, model, motorType, type));
+  }
+
+  @GetMapping("/search/price")
+  public ResponseEntity<List<Car>> findCarsByPrice(
+      @RequestParam Double minPrice, @RequestParam Double maxPrice) {
+    return ResponseEntity.ok(carService.findCarsByPrice(minPrice, maxPrice));
   }
 
   @PutMapping

@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer> {
   List<Car>
-      findByNameContainingIgnoreCaseOrBrandContainingIgnoreCaseOrModelContainingIgnoreCaseOrMotorTypeContainingIgnoreCase(
-          String name, String brand, String model, String motorType);
+      findByNameContainingIgnoreCaseOrBrandContainingIgnoreCaseOrModelContainingIgnoreCaseOrMotorTypeContainingIgnoreCaseOrTypeContainingIgnoreCase(
+          String name, String brand, String model, String motorType, String type);
 
   List<Car> findCarsByStatus(Integer status);
+
+  List<Car> findCarsByPriceBetween(Double minPrice, Double maxPrice);
 }
