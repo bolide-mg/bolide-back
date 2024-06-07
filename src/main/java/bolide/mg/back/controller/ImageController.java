@@ -15,6 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImageController {
   private final ImageService imageService;
 
+  @GetMapping
+  public ResponseEntity<List<Image>> findAllImage() {
+    return ResponseEntity.ok(imageService.findAllImage());
+  }
+
   @GetMapping("/{id}")
   public ResponseEntity<Image> findImageById(@PathVariable Integer id) {
     return ResponseEntity.ok(imageService.findImageById(id));

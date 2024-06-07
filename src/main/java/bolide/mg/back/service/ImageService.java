@@ -28,6 +28,10 @@ public class ImageService {
     return imageRepository.findById(id).orElse(null);
   }
 
+  public List<Image> findAllImage() {
+    return imageRepository.findAll();
+  }
+
   public List<Image> findImagesByCarId(Integer carId) {
     return imageRepository.findImagesByCarId(carId);
   }
