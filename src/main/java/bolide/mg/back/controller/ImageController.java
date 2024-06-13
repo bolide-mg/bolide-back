@@ -3,6 +3,8 @@ package bolide.mg.back.controller;
 import bolide.mg.back.model.Image;
 import bolide.mg.back.service.ImageService;
 import java.util.List;
+
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +18,10 @@ public class ImageController {
   private final ImageService imageService;
 
   @GetMapping
-  public ResponseEntity<List<Image>> findAllImage() {
-    return ResponseEntity.ok(imageService.findAllImage());
+  public ResponseEntity<List<Image>> findAllImage(HttpServletResponse response) {
+    List<Image> images = imageService.findAllImage();
+    response.setHeader("X-Total-Count", String.valueOf(images.size()));
+    return ResponseEntity.ok(images);
   }
 
   @GetMapping("/{id}")

@@ -26,6 +26,9 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @RequiredArgsConstructor
 @Configuration
@@ -47,7 +50,7 @@ public class SecurityConfig {
         .cors(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(
             auth ->
-                auth.requestMatchers("/admin/signup", "/admin/signin", "/token")
+                auth.requestMatchers("/admin/**", "/token","/images/**", "/admin/**", "/appointment/**")
                     .permitAll()
                     .requestMatchers(PUT, "/appointment/**")
                     .permitAll()
@@ -60,6 +63,18 @@ public class SecurityConfig {
         .oauth2ResourceServer(conf -> conf.jwt(withDefaults()))
         .httpBasic(withDefaults())
         .build();
+  }
+
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.addAllowedOrigin("*");
+    configuration.addAllowedMethod("*");
+    configuration.addAllowedHeader("*");
+    configuration.addExposedHeader("X-Total-Count");  // Expose the X-Total-Count header
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
   }
 
   @Bean

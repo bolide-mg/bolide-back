@@ -6,6 +6,8 @@ import bolide.mg.back.service.AdminService;
 import bolide.mg.back.service.TokenService;
 import java.util.List;
 import java.util.Map;
+
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +28,10 @@ public class AdminController {
   private final AuthenticationManager authenticationManager;
 
   @GetMapping
-  public ResponseEntity<List<Admin>> findAllAdmin() {
-    return ResponseEntity.ok(adminService.findAllAdmin());
+  public ResponseEntity<List<Admin>> findAllAdmin(HttpServletResponse response) {
+    List<Admin> admins = adminService.findAllAdmin();
+    response.setHeader("X-Total-Count", String.valueOf(admins.size()));
+    return ResponseEntity.ok(admins);
   }
 
   @GetMapping("/{id}")

@@ -5,6 +5,8 @@ import bolide.mg.back.model.Image;
 import bolide.mg.back.service.CarService;
 import bolide.mg.back.service.ImageService;
 import java.util.List;
+
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,10 @@ public class CarController {
   private final ImageService imageService;
 
   @GetMapping
-  public ResponseEntity<List<Car>> findAllCar() {
-    return ResponseEntity.ok(carService.findAllCar());
+  public ResponseEntity<List<Car>> findAllCar(HttpServletResponse response) {
+    List<Car> cars = carService.findAllCar();
+    response.setHeader("X-Total-Count", String.valueOf(cars.size()));
+    return ResponseEntity.ok(cars);
   }
 
   @GetMapping("/{id}")
